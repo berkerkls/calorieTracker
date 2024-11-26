@@ -30,7 +30,7 @@ const InputField = ({
                     value={value}
                     placeholder={placeholder}
                     placeholderTextColor="#4444"
-                    onChangeText={() => handleChangeText}
+                    onChangeText={() => handleChangeText()}
                     secureTextEntry={title === "Password" && !showPassword}
                 />
                 {title === "Password" && (

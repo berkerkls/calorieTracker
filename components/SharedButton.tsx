@@ -6,7 +6,7 @@ interface SharedButtonType {
     buttonStyles: string,
     textStyles?: string,
     title: string,
-    isLoading: boolean,
+    isLoading?: boolean,
     handlePress: Function
 }
 
@@ -19,7 +19,7 @@ export default function SharedButton({
 }: SharedButtonType) {
     return (
         <TouchableOpacity
-            onPress={() => handlePress}
+            onPress={() => handlePress()}
             activeOpacity={0.7}
             className={`rounded-xl min-h-[62px] flex flex-row justify-center items-center ${buttonStyles} ${isLoading ? "opacity-50" : ""
                 }`}

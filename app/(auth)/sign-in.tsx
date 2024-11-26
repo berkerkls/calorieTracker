@@ -31,7 +31,7 @@ export default function SignIn() {
                     style={{ minHeight: Dimensions.get("window").height - 100 }}
                 >
                     <Text className="text-primary text-2xl w-full text-center font-pbold">
-                        Travelar.
+                        CTracker.
                     </Text>
                     <Text className="text-xl font-semibold text-primary mt-4 font-psemibold">
                         Log in
