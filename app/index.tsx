@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView, Text, View, Image } from "react-native";
+import { ScrollView, Text, View, Image, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Link, router } from "expo-router";
 import { images } from ".././constants";
@@ -37,32 +37,10 @@ export default function App() {
                     justifyContent: "center",
                 }}
             >
-                <View className="w-full justify-around items-center px-4 gap-0">
-                    <Text className="text-primary text-4xl font-pbold">CTracker.</Text>
-                    <Image
-                        source={images.onboarding}
-                        className="max-w-[2r80px] h-[268px]"
-                        resizeMode="contain"
-                    ></Image>
-
-                    <View className="mt-5">
-                        <Text className="text-2xl text-primary text-center">
-                            Keep your diet or nutrient cycle organized with{" "}
-                            <Text className="font-pbold text-2xl text-primary">
-                                CTracker.
-                            </Text>
-                        </Text>
-                        <Text className="text-sm text-primary font-pregular mt-7 text-center">
-                            You can add nutrient value of your meal or what you ate and keep your diet organize.
-                        </Text>
-                    </View>
-
-                    <SharedButton
-                        title="Get Started with Email"
-                        handlePress={() => router.push("/sign-in")}
-                        buttonStyles={"bg-primary w-full mt-7"}
-                    />
+                <View className="justify-center items-center">
+                    <Pressable className="bg-primary px-4 rounded-xl" onPress={() => router.push('/(tabs)/home')} ><Text className="text-white">Here</Text></Pressable>
                 </View>
+
             </ScrollView>
             <StatusBar backgroundColor="#ebf2f9" style="dark" />
         </SafeAreaView>
