@@ -1,7 +1,9 @@
-import onboarding from "../assets/images/onboarding.png";
-import italy from "../assets/images/italy.png";
+import onboarding1 from "../assets/images/onboarding1.png";
+import onboarding2 from "../assets/images/onboarding2.png";
+import onboarding3 from "../assets/images/onboarding3.png";
 
 export default {
-  onboarding,
-  italy,
+  onboarding1,
+  onboarding2,
+  onboarding3,
 };

@@ -7,6 +7,7 @@ import SharedButton from "@/components/SharedButton";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import { SplashScreen } from "expo-router";
+import Onboarding from "@/components/Onboarding";
 
 
 export default function App() {
@@ -29,19 +30,8 @@ export default function App() {
 
     SplashScreen.hideAsync();
     return (
-        <SafeAreaView className="bg-white h-full">
-            <ScrollView
-                contentContainerStyle={{
-                    height: "100%",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <View className="justify-center items-center">
-                    <Pressable className="bg-primary px-4 rounded-xl" onPress={() => router.push('/(tabs)/home')} ><Text className="text-white">Here</Text></Pressable>
-                </View>
-
-            </ScrollView>
+        <SafeAreaView className="bg-white flex-1 justify-center items-center">
+            <Onboarding />
             <StatusBar backgroundColor="#ebf2f9" style="dark" />
         </SafeAreaView>
     );
