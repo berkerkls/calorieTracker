@@ -4,12 +4,14 @@ import { icons } from "../constants/index";
 import React from "react";
 
 interface InputFieldType {
-    title: string,
+    title?: string,
     buttonStyles?: string,
     handleChangeText: Function,
     placeholder?: string,
-    otherStyles: string | null,
+    otherStyles?: string | null,
     value: string,
+    inputHeight: string,
+    isPassword?: boolean
 }
 
 const InputField = ({
@@ -18,22 +20,24 @@ const InputField = ({
     handleChangeText,
     placeholder,
     otherStyles,
+    inputHeight,
+    isPassword,
     ...props
 }: InputFieldType) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <View className={`space-y-2 ${otherStyles}`}>
             <Text className="text-base text-gray-600">{title}</Text>
-            <View className="w-full border-2 border-gray-400 h-16 px-4 bg-black-100 flex-row rounded-2xl items-center focus:border-primary">
+            <View className={`w-full border-2 border-gray-400 px-4 bg-black-100 flex-row rounded-2xl items-center focus:border-primary ${inputHeight}`}>
                 <TextInput
                     className="flex-1 text-dark font-bsemibold text-base"
                     value={value}
                     placeholder={placeholder}
                     placeholderTextColor="#4444"
                     onChangeText={() => handleChangeText()}
-                    secureTextEntry={title === "Password" && !showPassword}
+                    secureTextEntry={isPassword && !showPassword}
                 />
-                {title === "Password" && (
+                {isPassword && (
                     <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                         <Image
                             source={!showPassword ? icons.eye : icons.eyeoff}

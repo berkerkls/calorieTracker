@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         primary: "#74cb83",
         light: "#ebf2f9",
+        background: "#fff",
       },
       fontFamily: {
         pthin: ["Roboto-Thin", "sans-serif"],

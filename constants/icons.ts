@@ -5,6 +5,8 @@ import plus from "../assets/icons/plus.png";
 import eye from "../assets/icons/eye-outline.png";
 import eyeoff from "../assets/icons/eye-off-outline.png";
 import search from "../assets/icons/search.png";
+import chevronLeft from "../assets/icons/chevron-left.png";
+import google from "../assets/icons/google.png";
 
 export default {
   home,
@@ -14,4 +16,6 @@ export default {
   eye,
   eyeoff,
   search,
+  chevronLeft,
+  google,
 };

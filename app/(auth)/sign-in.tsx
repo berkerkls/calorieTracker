@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, KeyboardAvoidingView, Pressable, Image, Platform, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native";
 import React, { useState } from "react";
 import InputField from "@/components/InputField";
 import SharedButton from "@/components/SharedButton";
 import { Link, router } from "expo-router";
+import { icons, images } from '@/constants';
 
 interface SignInFormType {
     email: string,
@@ -24,49 +25,104 @@ export default function SignIn() {
         router.navigate("../(tabs)/home")
     };
     return (
-        <SafeAreaView className="bg-light h-full">
-            <ScrollView>
-                <View
-                    className="w-full flex justfiy-center h-full px-4 my-6"
-                    style={{ minHeight: Dimensions.get("window").height - 100 }}
-                >
-                    <Text className="text-primary text-2xl w-full text-center font-pbold">
-                        CTracker.
-                    </Text>
-                    <Text className="text-xl font-semibold text-primary mt-4 font-psemibold">
-                        Log in
-                    </Text>
+        <SafeAreaView className="bg-background h-full">
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"} >
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View className="flex mx-4 my-6">
+                        <View className="justify-center items-center relative flex-row mb-6">
+                            <View className='absolute left-0'>
+                                <Pressable
+                                    className="rounded-3xl p-2"
+                                    onPress={() => router.back()}
+                                >
+                                    <Image
+                                        source={icons.chevronLeft}
+                                        className="h-7 w-7"
+                                        resizeMode="contain"
+                                        tintColor="#74cb83"
+                                    />
+                                </Pressable>
+                            </View>
+                        </View>
+                        <View className="flex-col justify-center items-center">
+                            <Image source={images.login} resizeMode="contain" className="w-[362px] h-[265px]" />
+                            <Text className="font-pbold text-3xl text-primary">Welcome!</Text>
+                        </View>
+                        <View>
+                            <InputField
+                                placeholder="Email"
+                                value={form.email}
+                                handleChangeText={(e: string) => setForm({ ...form, email: e })}
+                                inputHeight="h-12"
+                            // keyboardType="email-address"
+                            />
+                            <InputField
+                                placeholder="Password"
+                                value={form.password}
+                                handleChangeText={(e: string) => setForm({ ...form, password: e })}
+                                otherStyles="mt-4"
+                                inputHeight="h-12"
+                                isPassword={true}
+                            // keyboardType="password"
+                            />
+                        </View>
+                        <View>
+                            <SharedButton
+                                title="Login"
+                                handlePress={SubmitLogin}
+                                buttonStyles={"bg-primary w-full mt-7 shadow-md"}
+                                isLoading={isSubmitting}
+                            />
+                            <View className="flex-row items-center my-4">
+                                <View className="flex-1 h-px bg-gray-300" />
+                                <Text className="mx-2 text-gray-500 text-sm">or</Text>
+                                <View className="flex-1 h-px bg-gray-300" />
+                            </View>
+                            <View className="flex-1 justify-center items-center bg-white px-4">
+                                <TouchableOpacity
 
-                    <InputField
-                        title="Email"
-                        value={form.email}
-                        handleChangeText={(e: string) => setForm({ ...form, email: e })}
-                        otherStyles="mt-7"
-                    // keyboardType="email-address"
-                    />
-                    <InputField
-                        title="Password"
-                        value={form.password}
-                        handleChangeText={(e: string) => setForm({ ...form, password: e })}
-                        otherStyles="mt-7"
-                    // keyboardType="password"
-                    />
-                    <SharedButton
-                        title="Login"
-                        handlePress={SubmitLogin}
-                        buttonStyles={"bg-primary w-full mt-7"}
-                        isLoading={isSubmitting}
-                    />
-                    <View className="justify-center items-center gap-2 flex-row pt-5">
-                        <Text className="text-base font-pregular">
-                            Don't have an account?
-                        </Text>
-                        <Link href="/sign-up" className="text-primary font-pbold text-lg">
-                            Sign up
-                        </Link>
+                                    className="flex-row items-center bg-white shadow-md rounded-lg px-4 py-3"
+                                >
+                                    <Image
+                                        source={icons.google}
+                                        style={{ width: 24, height: 24, marginRight: 12 }}
+                                    />
+                                    <Text className="text-black text-base font-medium">Continue with Google</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View className="justify-center items-center gap-2 flex-row pt-5">
+                                <Text className="text-base font-pregular">
+                                    Don't have an account?
+                                </Text>
+                                <Link href="/sign-up" className="text-primary font-pbold text-lg">
+                                    Sign up
+                                </Link>
+                            </View>
+                        </View>
                     </View>
-                </View>
-            </ScrollView>
+                    {/* <View
+                        className="flex-1 justify-center items-center"
+                    >
+
+                       
+                        <SharedButton
+                            title="Login"
+                            handlePress={SubmitLogin}
+                            buttonStyles={"bg-primary w-full mt-7"}
+                            isLoading={isSubmitting}
+                        />
+                        <View className="justify-center items-center gap-2 flex-row pt-5">
+                            <Text className="text-base font-pregular">
+                                Don't have an account?
+                            </Text>
+                            <Link href="/sign-up" className="text-primary font-pbold text-lg">
+                                Sign up
+                            </Link>
+                        </View>
+                    </View> */}
+                </ScrollView>
+            </KeyboardAvoidingView>
+
         </SafeAreaView>
     );
 }
