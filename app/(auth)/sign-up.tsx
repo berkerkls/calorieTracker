@@ -12,6 +12,7 @@ import { images } from "@/constants";
 
 export default function SignUp() {
     const dispatch = useDispatch();
+    const [showEmailInputs, setShowEmailInputs] = useState(false)
     const [form, setForm] = useState({
         fullName: "",
         email: "",
@@ -23,6 +24,8 @@ export default function SignUp() {
     let userEmail = useSelector((state) => state.store.userReducer.email);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+
 
     const SubmitSignUp = () => {
         dispatch(setFullName(form.fullName));
@@ -50,72 +53,76 @@ export default function SignUp() {
                             </View>
                         </View>
                         <View className="flex-col justify-center items-center">
-                            <Image source={images.signup} resizeMode="contain" className="w-[362px] h-[265px]" />
+                            <Image source={images.signup} resizeMode="contain" className="w-[362px] h-[235px]" />
                             <Text className="font-pbold text-3xl text-primary">Fascal</Text>
-                            <Text className="font-pmedium text-lg mt-2 text-[#cccccc]">Start to organize and your diet and fasting plan</Text>
+                            <Text className="font-pmedium text-md mt-2 text-[#cccccc]">Start to organize and your diet and fasting plan</Text>
                         </View>
-                        <View className="flex-col justify-between items-center gap-4 mt-6">
-                            <View className="flex justify-center items-center bg-white px-4">
-                                <TouchableOpacity
-                                    className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
-                                >
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Image
-                                            source={icons.google}
-                                            style={{ width: 30, height: 30 }}
-                                        />
+                        {!showEmailInputs ? (
+                            <>
+                                <View className="flex-col justify-between items-center gap-4 mt-6">
+                                    <View className="flex justify-center items-center bg-white px-4">
+                                        <TouchableOpacity
+                                            className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
+                                        >
+                                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                                <Image
+                                                    source={icons.google}
+                                                    style={{ width: 30, height: 30 }}
+                                                />
+                                            </View>
+                                            <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                                <Text className="text-black text-lg font-medium">Continue with Google</Text>
+                                            </View>
+                                        </TouchableOpacity>
                                     </View>
-                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                        <Text className="text-black text-lg font-medium">Continue with Google</Text>
+                                    <View className="flex justify-center items-center bg-white px-4">
+                                        <TouchableOpacity
+                                            className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
+                                        >
+                                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                                <Image
+                                                    source={icons.apple}
+                                                    style={{ width: 30, height: 30 }}
+                                                />
+                                            </View>
+                                            <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                                <Text className="text-black text-lg font-medium">Continue with Apple</Text>
+                                            </View>
+                                        </TouchableOpacity>
                                     </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View className="flex justify-center items-center bg-white px-4">
-                                <TouchableOpacity
-                                    className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
-                                >
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Image
-                                            source={icons.apple}
-                                            style={{ width: 30, height: 30 }}
-                                        />
+                                    <View className="flex justify-center items-center bg-white px-4 ">
+                                        <TouchableOpacity
+                                            onPress={() => setShowEmailInputs(true)}
+                                            className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
+                                        >
+                                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                                <Image
+                                                    source={icons.account}
+                                                    style={{ width: 30, height: 30 }}
+                                                />
+                                            </View>
+                                            <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                                <Text className="text-black text-lg font-medium">Continue with Email</Text>
+                                            </View>
+                                        </TouchableOpacity>
                                     </View>
-                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                        <Text className="text-black text-lg font-medium">Continue with Apple</Text>
+                                </View>
+                                <View>
+                                    <View className="flex-row items-center my-4">
+                                        <View className="flex-1 h-px bg-gray-300" />
+                                        <Text className="mx-2 text-gray-500 text-sm">or</Text>
+                                        <View className="flex-1 h-px bg-gray-300" />
                                     </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View className="flex justify-center items-center bg-white px-4 ">
-                                <TouchableOpacity
-                                    className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
-                                >
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Image
-                                            source={icons.account}
-                                            style={{ width: 30, height: 30 }}
-                                        />
-                                    </View>
-                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                        <Text className="text-black text-lg font-medium">Continue with Email</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <View className="mt-4">
-                            <View className="flex-row items-center my-4">
-                                <View className="flex-1 h-px bg-gray-300" />
-                                <Text className="mx-2 text-gray-500 text-sm">or</Text>
-                                <View className="flex-1 h-px bg-gray-300" />
-                            </View>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <SharedButton
-                                title="Continue to Login"
-                                handlePress={() => router.push('/(auth)/sign-in')}
-                                buttonStyles={"bg-primary  mt-7  shadow-md"}
-                            />
-                        </View>
-                        {/* <View>
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <SharedButton
+                                        title="Continue to Login"
+                                        handlePress={() => router.push('/(auth)/sign-in')}
+                                        buttonStyles={"bg-primary  mt-7  shadow-md"}
+                                    />
+                                </View>
+                            </>
+                        ) : (<View>
                             <InputField
                                 placeholder="Name"
                                 value={form.fullName}
@@ -146,7 +153,23 @@ export default function SignUp() {
                                 isPassword={true}
                             // keyboardType="password"
                             />
-                        </View> */}
+                            <View className="flex-row justify-around items-center">
+                                <SharedButton
+                                    title="Back"
+                                    handlePress={() => setShowEmailInputs(false)}
+                                    buttonStyles={"bg-transparent border border-md  border-primary  mt-7 shadow-md px-8"}
+                                    textStyles="text-primary"
+
+                                />
+                                <SharedButton
+                                    title="Create an account"
+                                    handlePress={SubmitSignUp}
+                                    buttonStyles={"bg-primary mt-7 shadow-md px-8"}
+                                    isLoading={isSubmitting}
+                                />
+                            </View>
+                        </View>)}
+
                         {/* <View>
                             <SharedButton
                                 title="Create an account"

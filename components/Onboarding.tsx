@@ -75,7 +75,7 @@ const Onboarding = () => {
                 />
                 <Paginator slides={slides} scrollX={scrollX} />
             </View>
-            <View className="flex-[0.5]">
+            <View className="flex-[0.4]">
                 <View className="flex justify-center items-center mt-14">
                     <SharedButton
                         title="Get Started"

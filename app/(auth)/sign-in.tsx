@@ -25,7 +25,7 @@ export default function SignIn() {
         router.navigate("../(tabs)/home")
     };
     return (
-        <SafeAreaView className="bg-background h-full">
+        <SafeAreaView className="bg-background h-full" >
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"} >
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View className="flex mx-4 my-6">
@@ -45,7 +45,7 @@ export default function SignIn() {
                             </View>
                         </View>
                         <View className="flex-col justify-center items-center">
-                            <Image source={images.login} resizeMode="contain" className="w-[362px] h-[265px]" />
+                            <Image source={images.login} resizeMode="contain" className="w-[362px] h-[235px]" />
                             <Text className="font-pbold text-3xl text-primary">Welcome!</Text>
                         </View>
                         <View>
