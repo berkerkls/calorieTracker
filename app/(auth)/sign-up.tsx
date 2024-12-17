@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Image, Pressable, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, Text, Platform, View, Dimensions, Image, Pressable, KeyboardAvoidingView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native";
 import React, { useState } from "react";
@@ -8,6 +8,7 @@ import { icons } from "@/constants";
 import { Link, router } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setFullName, setUserEmail } from "../../redux/slices/UserSlice";
+import { images } from "@/constants";
 
 export default function SignUp() {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export default function SignUp() {
         fullName: "",
         email: "",
         password: "",
+        confirmPassword: ""
     });
 
     let userFullName = useSelector((state) => state.store.userReducer.fullName);
@@ -29,66 +31,176 @@ export default function SignUp() {
     };
     return (
         <SafeAreaView className="bg-background h-full">
-            <ScrollView>
-                <View
-                    className="w-full flex justfiy-center h-full px-4 my-6"
-                    style={{ minHeight: Dimensions.get("window").height - 100 }}
-                >
-                    <View className="justify-center items-center relative flex-row mb-6">
-                        <View className='absolute left-0'>
-                            <Pressable
-                                className="rounded-3xl p-2"
-                                onPress={() => router.back()}
-                            >
-                                <Image
-                                    source={icons.chevronLeft}
-                                    className="h-7 w-7"
-                                    resizeMode="contain"
-                                    tintColor="#74cb83"
-                                />
-                            </Pressable>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"} >
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View className="flex mx-4 my-6">
+                        <View className="justify-center items-center relative flex-row mb-6">
+                            <View className='absolute left-0'>
+                                <Pressable
+                                    className="rounded-3xl p-2"
+                                    onPress={() => router.push('/(auth)/sign-in')}
+                                >
+                                    <Image
+                                        source={icons.chevronLeft}
+                                        className="h-7 w-7"
+                                        resizeMode="contain"
+                                        tintColor="#74cb83"
+                                    />
+                                </Pressable>
+                            </View>
                         </View>
+                        <View className="flex-col justify-center items-center">
+                            <Image source={images.signup} resizeMode="contain" className="w-[362px] h-[265px]" />
+                            <Text className="font-pbold text-3xl text-primary">Fascal</Text>
+                            <Text className="font-pmedium text-lg mt-2 text-[#cccccc]">Start to organize and your diet and fasting plan</Text>
+                        </View>
+                        <View className="flex-col justify-between items-center gap-4 mt-6">
+                            <View className="flex justify-center items-center bg-white px-4">
+                                <TouchableOpacity
+                                    className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
+                                >
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Image
+                                            source={icons.google}
+                                            style={{ width: 30, height: 30 }}
+                                        />
+                                    </View>
+                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <Text className="text-black text-lg font-medium">Continue with Google</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View className="flex justify-center items-center bg-white px-4">
+                                <TouchableOpacity
+                                    className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
+                                >
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Image
+                                            source={icons.apple}
+                                            style={{ width: 30, height: 30 }}
+                                        />
+                                    </View>
+                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <Text className="text-black text-lg font-medium">Continue with Apple</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View className="flex justify-center items-center bg-white px-4 ">
+                                <TouchableOpacity
+                                    className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
+                                >
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Image
+                                            source={icons.account}
+                                            style={{ width: 30, height: 30 }}
+                                        />
+                                    </View>
+                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <Text className="text-black text-lg font-medium">Continue with Email</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View className="mt-4">
+                            <View className="flex-row items-center my-4">
+                                <View className="flex-1 h-px bg-gray-300" />
+                                <Text className="mx-2 text-gray-500 text-sm">or</Text>
+                                <View className="flex-1 h-px bg-gray-300" />
+                            </View>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <SharedButton
+                                title="Continue to Login"
+                                handlePress={() => router.push('/(auth)/sign-in')}
+                                buttonStyles={"bg-primary  mt-7  shadow-md"}
+                            />
+                        </View>
+                        {/* <View>
+                            <InputField
+                                placeholder="Name"
+                                value={form.fullName}
+                                handleChangeText={(e: string) => setForm({ ...form, email: e })}
+                                inputHeight="h-12"
+                            // keyboardType="email-address"
+                            />
+                            <InputField
+                                placeholder="Email"
+                                value={form.email}
+                                handleChangeText={(e: string) => setForm({ ...form, email: e })}
+                                inputHeight="h-12"
+                            // keyboardType="email-address"
+                            />
+                            <InputField
+                                placeholder="Password"
+                                value={form.password}
+                                handleChangeText={(e: string) => setForm({ ...form, password: e })}
+                                inputHeight="h-12"
+                                isPassword={true}
+                            // keyboardType="password"
+                            />
+                            <InputField
+                                placeholder="Confirm Password"
+                                value={form.confirmPassword}
+                                handleChangeText={(e: string) => setForm({ ...form, confirmPassword: e })}
+                                inputHeight="h-12"
+                                isPassword={true}
+                            // keyboardType="password"
+                            />
+                        </View> */}
+                        {/* <View>
+                            <SharedButton
+                                title="Create an account"
+                                handlePress={SubmitSignUp}
+                                buttonStyles={"bg-primary w-full mt-7 shadow-md"}
+                                isLoading={isSubmitting}
+                            />
+                            <View className="flex-row items-center my-4">
+                                <View className="flex-1 w-px bg-gray-300" />
+                                <Text className="mx-2 text-gray-500 text-sm">or</Text>
+                                <View className="flex-1 h-px bg-gray-300" />
+                            </View>
+                            <View className="flex-1 justify-center items-center bg-white px-4">
+                                <TouchableOpacity
+                                    className="flex-row items-center bg-white shadow-md rounded-lg px-4 py-3"
+                                >
+                                    <Image
+                                        source={icons.google}
+                                        style={{ width: 24, height: 24, marginRight: 12 }}
+                                    />
+                                    <Text className="text-black text-base font-medium">Continue with Google</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View className="justify-center items-center gap-2 flex-row pt-5">
+                                <Text className="text-base font-pregular">
+                                    Already have an account?
+                                </Text>
+                                <Link href="/sign-in" className="text-primary font-pbold text-lg">
+                                    Login
+                                </Link>
+                            </View>
+                        </View> */}
                     </View>
-                    <KeyboardAvoidingView>
-
-                    </KeyboardAvoidingView>
-                    {/* <Text className="text-primary text-2xl w-full text-center font-pbold">
-                        Fascal
-                    </Text>
-                    <Text className="text-xl font-semibold text-primary mt-4 font-psemibold">
-                        Log in
-                    </Text> */}
-
-                    {/* <InputField
-                        title="Email"
-                        value={form.email}
-                        handleChangeText={(e: string) => setForm({ ...form, email: e })}
-                        otherStyles="mt-7"
-                    // keyboardType="email-address"
-                    />
-                    <InputField
-                        title="Password"
-                        value={form.password}
-                        handleChangeText={(e: string) => setForm({ ...form, password: e })}
-                        otherStyles="mt-7"
-                    // keyboardType="password"
-                    /> */}
-                    {/* <SharedButton
-                        title="Login"
-                        handlePress={SubmitLogin}
-                        buttonStyles={"bg-primary w-full mt-7"}
-                        isLoading={isSubmitting}
-                    /> */}
-                    {/* <View className="justify-center items-center gap-2 flex-row pt-5">
-                        <Text className="text-base font-pregular">
-                            Don't have an account?
-                        </Text>
-                        <Link href="/sign-up" className="text-primary font-pbold text-lg">
-                            Sign up
-                        </Link>
+                    {/* <View
+                        className="flex-1 justify-center items-center"
+                    >
+                        <SharedButton
+                            title="Login"
+                            handlePress={SubmitLogin}
+                            buttonStyles={"bg-primary w-full mt-7"}
+                            isLoading={isSubmitting}
+                        />
+                        <View className="justify-center items-center gap-2 flex-row pt-5">
+                            <Text className="text-base font-pregular">
+                                Don't have an account?
+                            </Text>
+                            <Link href="/sign-up" className="text-primary font-pbold text-lg">
+                                Sign up
+                            </Link>
+                        </View>
                     </View> */}
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </KeyboardAvoidingView>
+
         </SafeAreaView>
     );
 }

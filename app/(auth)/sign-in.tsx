@@ -33,7 +33,7 @@ export default function SignIn() {
                             <View className='absolute left-0'>
                                 <Pressable
                                     className="rounded-3xl p-2"
-                                    onPress={() => router.back()}
+                                    onPress={() => router.push('/')}
                                 >
                                     <Image
                                         source={icons.chevronLeft}
@@ -53,7 +53,7 @@ export default function SignIn() {
                                 placeholder="Email"
                                 value={form.email}
                                 handleChangeText={(e: string) => setForm({ ...form, email: e })}
-                                inputHeight="h-12"
+                                inputHeight="h-14"
                             // keyboardType="email-address"
                             />
                             <InputField
@@ -61,12 +61,12 @@ export default function SignIn() {
                                 value={form.password}
                                 handleChangeText={(e: string) => setForm({ ...form, password: e })}
                                 otherStyles="mt-4"
-                                inputHeight="h-12"
+                                inputHeight="h-14"
                                 isPassword={true}
                             // keyboardType="password"
                             />
                         </View>
-                        <View>
+                        <View >
                             <SharedButton
                                 title="Login"
                                 handlePress={SubmitLogin}
@@ -78,16 +78,19 @@ export default function SignIn() {
                                 <Text className="mx-2 text-gray-500 text-sm">or</Text>
                                 <View className="flex-1 h-px bg-gray-300" />
                             </View>
-                            <View className="flex-1 justify-center items-center bg-white px-4">
+                            <View className="flex justify-center items-center bg-white px-4">
                                 <TouchableOpacity
-
-                                    className="flex-row items-center bg-white shadow-md rounded-lg px-4 py-3"
+                                    className="flex-row justify-center items-center bg-white shadow-md rounded-lg py-3"
                                 >
-                                    <Image
-                                        source={icons.google}
-                                        style={{ width: 24, height: 24, marginRight: 12 }}
-                                    />
-                                    <Text className="text-black text-base font-medium">Continue with Google</Text>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Image
+                                            source={icons.google}
+                                            style={{ width: 30, height: 30 }}
+                                        />
+                                    </View>
+                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <Text className="text-black text-base font-medium">Continue with Google</Text>
+                                    </View>
                                 </TouchableOpacity>
                             </View>
                             <View className="justify-center items-center gap-2 flex-row pt-5">

@@ -7,6 +7,7 @@ import eyeoff from "../assets/icons/eye-off-outline.png";
 import search from "../assets/icons/search.png";
 import chevronLeft from "../assets/icons/chevron-left.png";
 import google from "../assets/icons/google.png";
+import apple from "../assets/icons/apple.png";
 
 export default {
   home,
@@ -18,4 +19,5 @@ export default {
   search,
   chevronLeft,
   google,
+  apple,
 };
