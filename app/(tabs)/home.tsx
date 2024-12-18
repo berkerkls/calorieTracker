@@ -9,6 +9,7 @@ import SearchInput from "../../components/SearchInput";
 import DashboardTopBar from "@/components/DashboardTopBar";
 import DashboardCaloriesChart from "@/components/DashboardCaloriesChart";
 import { RootState } from "@/redux/store";
+import NutritionalValuesCard from "@/components/NutritionalValuesCard";
 
 
 export default function Home() {
@@ -17,11 +18,14 @@ export default function Home() {
   return (
     <SafeAreaView className="bg-background h-full px-4">
       <View className="flex-col justify-center items-center gap-5 ">
-        <View>
+        <View className="justify-center items-center">
           <DashboardTopBar />
         </View>
         <View className="mt-12 bg-primary w-full rounded-3xl justify-center items-center">
           <DashboardCaloriesChart />
+        </View>
+        <View className="mt-12 bg-[#212121] w-full rounded-3xl justify-center items-center">
+          <NutritionalValuesCard />
         </View>
       </View>
     </SafeAreaView>
