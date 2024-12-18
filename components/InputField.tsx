@@ -36,6 +36,7 @@ const InputField = ({
                     placeholderTextColor="#4444"
                     onChangeText={() => handleChangeText()}
                     secureTextEntry={isPassword && !showPassword}
+                    autoCapitalize={title === 'Email' || placeholder === 'Email' ? 'none' : undefined}
                 />
                 {isPassword && (
                     <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>

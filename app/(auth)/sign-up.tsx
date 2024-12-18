@@ -14,23 +14,19 @@ export default function SignUp() {
     const dispatch = useDispatch();
     const [showEmailInputs, setShowEmailInputs] = useState(false)
     const [form, setForm] = useState({
-        fullName: "",
-        email: "",
+        fullName: "Berker Kelesoglu",
+        email: "berkerkelesoglu@gmail.com",
         password: "",
         confirmPassword: ""
     });
-
-    let userFullName = useSelector((state) => state.store.userReducer.fullName);
-    let userEmail = useSelector((state) => state.store.userReducer.email);
-
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-
-
     const SubmitSignUp = () => {
+        setIsSubmitting(true)
         dispatch(setFullName(form.fullName));
         dispatch(setUserEmail(form.email));
         router.replace("/home");
+        setIsSubmitting(false)
     };
     return (
         <SafeAreaView className="bg-background h-full">
@@ -116,7 +112,7 @@ export default function SignUp() {
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <SharedButton
-                                        title="Continue to Login"
+                                        title="Back to Login"
                                         handlePress={() => router.push('/(auth)/sign-in')}
                                         buttonStyles={"bg-primary  mt-7  shadow-md"}
                                     />
@@ -126,7 +122,7 @@ export default function SignUp() {
                             <InputField
                                 placeholder="Name"
                                 value={form.fullName}
-                                handleChangeText={(e: string) => setForm({ ...form, email: e })}
+                                handleChangeText={(e: string) => setForm({ ...form, fullName: e })}
                                 inputHeight="h-12"
                             // keyboardType="email-address"
                             />

@@ -8,6 +8,9 @@ import search from "../assets/icons/search.png";
 import chevronLeft from "../assets/icons/chevron-left.png";
 import google from "../assets/icons/google.png";
 import apple from "../assets/icons/apple.png";
+import fasting from "../assets/icons/fasting.png";
+import diet from "../assets/icons/diet.png";
+import bell from "../assets/icons/bell.png";
 
 export default {
   home,
@@ -20,4 +23,7 @@ export default {
   chevronLeft,
   google,
   apple,
+  fasting,
+  diet,
+  bell,
 };
